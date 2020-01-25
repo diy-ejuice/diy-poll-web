@@ -1,5 +1,6 @@
 {
-  "name": "noted-poll-web",
+  "name": "noted-survey-web",
+  "private": true,
   "version": "0.1.0",
   "description": "",
   "author": "ayan4m1 <andrew@bulletlogic.com>",
@@ -11,20 +12,24 @@
   "dependencies": {
     "@babel/runtime": "^7.8.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "bootstrap": "^4.4.1",
+    "bootswatch": "^4.4.1",
     "classnames": "^2.2.6",
     "core-js": "^3.6.4",
     "normalize-scss": "^7.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "survey-react": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
