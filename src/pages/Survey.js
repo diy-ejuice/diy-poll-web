@@ -1,8 +1,19 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as Survey from 'survey-react';
 
-export default class SurveyPage extends Component {
+import { actions as appActions } from 'reducers/application';
+
+export class SurveyPage extends Component {
+  static propTypes = {
+    actions: PropTypes.shape({
+      submitSurvey: PropTypes.func.isRequired
+    }).isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -13,36 +24,36 @@ export default class SurveyPage extends Component {
         "elements": [
          {
           "type": "radiogroup",
-          "name": "Squestion1",
+          "name": "favoriteFlavor",
           "title": "Pick your favorite flavor",
           "isRequired": true,
           "choices": [
            {
-            "value": "item1",
+            "value": "MB Big Watermelon",
             "text": "MB Big Watermelon"
            },
            {
-            "value": "item2",
+            "value": "FLV Wild Melon",
             "text": "FLV Wild Melon"
            },
            {
-            "value": "item3",
+            "value": "Cap Double Watermelon",
             "text": "Cap Double Watermelon"
            },
            {
-            "value": "item4",
+            "value": "DIYFS Maniacal Melon",
             "text": "DIYFS Maniacal Melon"
            },
            {
-            "value": "item5",
+            "value": "PUR Melon Patch",
             "text": "PUR Melon Patch"
            },
            {
-            "value": "item6",
+            "value": "INW Buttplug",
             "text": "INW Buttplug"
            },
            {
-            "value": "item7",
+            "value": "Something Else",
             "text": "Something Else"
            }
           ]
@@ -70,16 +81,14 @@ export default class SurveyPage extends Component {
   }
 
   onComplete(model) {
+    const { actions } = this.props;
     const { valuesHash, isCompleted } = model;
 
     if (!isCompleted || !valuesHash) {
       return;
     }
 
-    const entries = Object.entries(valuesHash);
-
-    // eslint-disable-next-line
-    console.dir(entries);
+    actions.submitSurvey(Object.entries(valuesHash));
   }
 
   render() {
@@ -92,10 +101,16 @@ export default class SurveyPage extends Component {
               css={this.css}
               model={this.model}
               onComplete={this.onComplete}
-            ></Survey.Survey>
+            />
           </Col>
         </Row>
       </Container>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(appActions, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(SurveyPage);
