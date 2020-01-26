@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { CLIEngine } from 'eslint';
 import HtmlPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import CnameWebpackPlugin from 'cname-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin';
@@ -10,6 +11,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const dev = process.env.NODE_ENV === 'development';
 const apiUrl = process.env.API_URL;
+const appDomain = process.env.APP_DOMAIN || 'localhost';
 
 const plugins = [
   new CleanPlugin(),
@@ -34,6 +36,12 @@ const plugins = [
 
 if (dev) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
+} else {
+  plugins.push(
+    new CnameWebpackPlugin({
+      domain: appDomain
+    })
+  );
 }
 
 export default {
