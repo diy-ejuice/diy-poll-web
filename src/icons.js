@@ -1,4 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
+import { faDiscord, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faFontAwesome);
+library.add(faClipboardList, faDiscord, faRedditAlien);

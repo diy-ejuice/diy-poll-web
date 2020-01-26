@@ -1,11 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import { connect } from 'react-redux';
+import Header from 'components/Header/Header';
+import Home from 'pages/Home';
+import Survey from 'pages/Survey';
+import Results from 'pages/Results';
 
-export class App extends Component {
+export default class App extends Component {
   render() {
-    return <h1>Hello World</h1>;
+    return (
+      <Fragment>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/survey" component={Survey} />
+          <Route exact path="/results" component={Results} />
+        </Switch>
+      </Fragment>
+    );
   }
 }
-
-export default connect(null, null)(App);
