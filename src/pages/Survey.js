@@ -62,7 +62,7 @@ export class SurveyPage extends Component {
         ]
        }
       ],
-      "cookieName": "survey1"
+      "cookieName": "fotw-2020-01-26"
      }`;
 
     this.css = {
