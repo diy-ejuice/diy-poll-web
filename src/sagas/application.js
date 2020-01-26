@@ -3,10 +3,11 @@ import { all, call, takeLatest } from 'redux-saga/effects';
 
 import { types } from 'reducers/application';
 
-function* submitSurveyWorker({ answers }) {
+function* submitSurveyWorker({ answers, id }) {
   try {
     yield call(axios.post, `${API_URL}/survey`, {
-      answers
+      answers,
+      id
     });
   } catch (error) {
     // eslint-disable-next-line

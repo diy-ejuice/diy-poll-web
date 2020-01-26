@@ -6,9 +6,10 @@ const initApp = () => ({
   type: types.INIT_APP
 });
 
-const submitSurvey = answers => ({
+const submitSurvey = (id, answers) => ({
   type: types.SUBMIT_SURVEY,
-  answers
+  answers,
+  id
 });
 
 export const actions = {
