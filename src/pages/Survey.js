@@ -49,10 +49,6 @@ export class SurveyPage extends Component {
             "text": "PUR Melon Patch"
            },
            {
-            "value": "INW Buttplug",
-            "text": "INW Buttplug"
-           },
-           {
             "value": "Something Else",
             "text": "Something Else"
            }
