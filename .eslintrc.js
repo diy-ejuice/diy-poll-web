@@ -7,6 +7,9 @@ module.exports = {
     es6: true,
     node: true
   },
+  globals: {
+    API_URL: 'readonly'
+  },
   plugins: ['import', 'react', 'prettier', 'jsx-a11y'],
   extends: [
     'eslint:recommended',

@@ -9,6 +9,7 @@ import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const dev = process.env.NODE_ENV === 'development';
+const apiUrl = process.env.API_URL;
 
 const plugins = [
   new CleanPlugin(),
@@ -25,6 +26,9 @@ const plugins = [
   }),
   new HtmlPlugin({
     template: './src/index.html'
+  }),
+  new webpack.DefinePlugin({
+    API_URL: JSON.stringify(dev || !apiUrl ? 'http://localhost:9090' : apiUrl)
   })
 ];
 
