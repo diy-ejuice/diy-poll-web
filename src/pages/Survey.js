@@ -18,7 +18,6 @@ export class SurveyPage extends Component {
     super(props);
 
     const json = `{
-      "surveyId": "fotw-2020-01-26",
       "pages": [
        {
         "name": "page1",
@@ -83,13 +82,13 @@ export class SurveyPage extends Component {
 
   onComplete(model) {
     const { actions } = this.props;
-    const { isCompleted, surveyId, valuesHash } = model;
+    const { isCompleted, cookieName, valuesHash } = model;
 
     if (!isCompleted || !valuesHash) {
       return;
     }
 
-    actions.submitSurvey(surveyId, valuesHash);
+    actions.submitSurvey(cookieName, valuesHash);
   }
 
   render() {
