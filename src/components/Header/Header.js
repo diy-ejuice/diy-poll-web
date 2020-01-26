@@ -26,14 +26,15 @@ export default class Header extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon icon={['fab', 'reddit-alien']} /> /r/DIY_eJuice
+              <FontAwesomeIcon icon={['fab', 'reddit-alien']} size="lg" />{' '}
+              /r/DIY_eJuice
             </Nav.Link>
             <Nav.Link
               href="http://link.diyejuice.org/discord"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon icon={['fab', 'discord']} /> Discord
+              <FontAwesomeIcon icon={['fab', 'discord']} size="lg" /> Discord
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
