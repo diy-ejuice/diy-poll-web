@@ -25,39 +25,91 @@ export class SurveyPage extends Component {
          {
           "type": "radiogroup",
           "name": "favoriteFlavor",
-          "title": "Pick your favorite flavor",
+          "title": "Pick your favorite Cherry flavor",
           "isRequired": true,
           "choices": [
-           {
-            "value": "MB Big Watermelon",
-            "text": "MB Big Watermelon"
-           },
-           {
-            "value": "FLV Wild Melon",
-            "text": "FLV Wild Melon"
-           },
-           {
-            "value": "Cap Double Watermelon",
-            "text": "Cap Double Watermelon"
-           },
-           {
-            "value": "DIYFS Maniacal Melon",
-            "text": "DIYFS Maniacal Melon"
-           },
-           {
-            "value": "PUR Melon Patch",
-            "text": "PUR Melon Patch"
-           },
-           {
-            "value": "Something Else",
-            "text": "Something Else"
-           }
-          ]
+            {
+             "value": "TFA Cherry Extract",
+             "text": "TFA Cherry Extract"
+            },
+            {
+             "value": "WF Black Cherry Jelly Bean",
+             "text": "WF Black Cherry Jelly Bean"
+            },
+            {
+             "value": "FLV Black Cherry",
+             "text": "FLV Black Cherry"
+            },
+            {
+             "value": "INW Black Cherry For Pipe",
+             "text": "INW Black Cherry For Pipe"
+            },
+            {
+             "value": "INW Cherries",
+             "text": "INW Cherries"
+            },
+            {
+             "value": "FA Cherry",
+             "text": "FA Cherry"
+            },
+            {
+             "value": "FA Black Cherry",
+             "text": "FA Black Cherry"
+            },
+            {
+             "value": "TFA Black Cherry",
+             "text": "TFA Black Cherry"
+            },
+            {
+             "value": "FW Cherry Crush",
+             "text": "FW Cherry Crush"
+            },
+            {
+             "value": "FW Cherry Berry",
+             "text": "FW Cherry Berry"
+            },
+            {
+             "value": "MB Red Cherry",
+             "text": "MB Red Cherry"
+            },
+            {
+             "value": "FLV Cherry Filling",
+             "text": "FLV Cherry Filling"
+            },
+            {
+             "value": "FLV Cherry Blossom",
+             "text": "FLV Cherry Blossom"
+            },
+            {
+             "value": "TFA Cherry Blossom",
+             "text": "TFA Cherry Blossom"
+            },
+            {
+             "value": "CAP Tart Cherry",
+             "text": "CAP Tart Cherry"
+            },
+            {
+             "value": "TFA Maraschino Cherry",
+             "text": "TFA Maraschino Cherry"
+            },
+            {
+             "value": "FLV Rainier Cherry",
+             "text": "FLV Rainier Cherry"
+            },
+            {
+             "value": "FLV Cherry Filling",
+             "text": "FLV Cherry Filling"
+            },
+            {
+              "value": "Something Else",
+              "text": "Something Else"
+            }
+           ]
          }
         ]
        }
       ],
-      "cookieName": "fotw-2020-01-26"
+      "cookieName": "fotw-2020-01-28"
      }`;
 
     this.css = {
