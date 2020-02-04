@@ -29,80 +29,56 @@ export class SurveyPage extends Component {
           "isRequired": true,
           "choices": [
             {
-             "value": "TFA Cherry Extract",
-             "text": "TFA Cherry Extract"
+              "value": "TFA Banana Ripe",
+              "text": "TFA Banana Ripe"
             },
             {
-             "value": "WF Black Cherry Jelly Bean",
-             "text": "WF Black Cherry Jelly Bean"
+              "value": "TFA Bananas Foster",
+              "text": "TFA Bananas Foster"
             },
             {
-             "value": "FLV Black Cherry",
-             "text": "FLV Black Cherry"
+              "value": "TFA Banana Bread",
+              "text": "TFA Banana Bread"
             },
             {
-             "value": "INW Black Cherry For Pipe",
-             "text": "INW Black Cherry For Pipe"
+              "value": "TFA Banana Cream",
+              "text": "TFA Banana Cream"
             },
             {
-             "value": "INW Cherries",
-             "text": "INW Cherries"
+              "value": "LA Banana Cream",
+              "text": "LA Banana Cream"
             },
             {
-             "value": "FA Cherry",
-             "text": "FA Cherry"
+              "value": "FA Banana",
+              "text": "FA Banana"
             },
             {
-             "value": "FA Black Cherry",
-             "text": "FA Black Cherry"
+              "value": "HS Banana",
+              "text": "HS Banana"
             },
             {
-             "value": "TFA Black Cherry",
-             "text": "TFA Black Cherry"
+              "value": "FLV Banana",
+              "text": "FLV Banana"
             },
             {
-             "value": "FW Cherry Crush",
-             "text": "FW Cherry Crush"
+              "value": "CAP Banana",
+              "text": "CAP Banana"
             },
             {
-             "value": "FW Cherry Berry",
-             "text": "FW Cherry Berry"
+              "value": "PUR Banana",
+              "text": "PUR Banana"
             },
             {
-             "value": "MB Red Cherry",
-             "text": "MB Red Cherry"
+              "value": "VT Banana Custard",
+              "text": "VT Banana Custard"
             },
             {
-             "value": "FLV Cherry Filling",
-             "text": "FLV Cherry Filling"
+              "value": "WF Banana Puree",
+              "text": "WF Banana Puree"
             },
             {
-             "value": "FLV Cherry Blossom",
-             "text": "FLV Cherry Blossom"
-            },
-            {
-             "value": "TFA Cherry Blossom",
-             "text": "TFA Cherry Blossom"
-            },
-            {
-             "value": "CAP Tart Cherry",
-             "text": "CAP Tart Cherry"
-            },
-            {
-             "value": "TFA Maraschino Cherry",
-             "text": "TFA Maraschino Cherry"
-            },
-            {
-             "value": "FLV Rainier Cherry",
-             "text": "FLV Rainier Cherry"
-            },
-            {
-             "value": "FLV Cherry Filling",
-             "text": "FLV Cherry Filling"
-            },
-            {
-              "value": "Something Else",
-              "text": "Something Else"
+              "value":"Something Else",
+              "text":"Something Else"
             }
            ]
          }
