@@ -25,7 +25,7 @@ export class SurveyPage extends Component {
          {
           "type": "radiogroup",
           "name": "favoriteFlavor",
-          "title": "Pick your favorite Cherry flavor",
+          "title": "Pick your favorite Banana flavor",
           "isRequired": true,
           "choices": [
             {
@@ -85,7 +85,7 @@ export class SurveyPage extends Component {
         ]
        }
       ],
-      "cookieName": "fotw-2020-01-28"
+      "cookieName": "fotw-2020-02-04"
      }`;
 
     this.css = {
