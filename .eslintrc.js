@@ -1,4 +1,4 @@
-const path = require('path');
+const { join } = require('path');
 
 module.exports = {
   env: {
@@ -176,7 +176,7 @@ module.exports = {
     },
     'import/resolver': {
       webpack: {
-        config: path.join(__dirname, 'webpack.config.babel.js')
+        config: join(__dirname, 'webpack.config.babel.js')
       }
     }
   }
