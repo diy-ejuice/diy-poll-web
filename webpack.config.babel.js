@@ -112,6 +112,7 @@ export default {
     modules: ['node_modules', 'src'],
     alias: {
       components: resolve(__dirname, 'src/components'),
+      data: resolve(__dirname, 'src/data'),
       utils: resolve(__dirname, 'src/utils')
     }
   },

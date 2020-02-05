@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Survey from 'survey-react';
 
+import SurveyJson from 'data/fotw-2020-02-04';
+
 import { actions as appActions } from 'reducers/application';
 
 export class SurveyPage extends Component {
@@ -16,77 +18,6 @@ export class SurveyPage extends Component {
 
   constructor(props) {
     super(props);
-
-    const json = `{
-      "pages": [
-       {
-        "name": "page1",
-        "elements": [
-         {
-          "type": "radiogroup",
-          "name": "favoriteFlavor",
-          "title": "Pick your favorite Banana flavor",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "TFA Banana Ripe",
-              "text": "TFA Banana Ripe"
-            },
-            {
-              "value": "TFA Bananas Foster",
-              "text": "TFA Bananas Foster"
-            },
-            {
-              "value": "TFA Banana Bread",
-              "text": "TFA Banana Bread"
-            },
-            {
-              "value": "TFA Banana Cream",
-              "text": "TFA Banana Cream"
-            },
-            {
-              "value": "LA Banana Cream",
-              "text": "LA Banana Cream"
-            },
-            {
-              "value": "FA Banana",
-              "text": "FA Banana"
-            },
-            {
-              "value": "HS Banana",
-              "text": "HS Banana"
-            },
-            {
-              "value": "FLV Banana",
-              "text": "FLV Banana"
-            },
-            {
-              "value": "CAP Banana",
-              "text": "CAP Banana"
-            },
-            {
-              "value": "PUR Banana",
-              "text": "PUR Banana"
-            },
-            {
-              "value": "VT Banana Custard",
-              "text": "VT Banana Custard"
-            },
-            {
-              "value": "WF Banana Puree",
-              "text": "WF Banana Puree"
-            },
-            {
-              "value":"Something Else",
-              "text":"Something Else"
-            }
-           ]
-         }
-        ]
-       }
-      ],
-      "cookieName": "fotw-2020-02-04"
-     }`;
 
     this.css = {
       radiogroup: {
@@ -100,7 +31,7 @@ export class SurveyPage extends Component {
       },
       navigationButton: 'btn btn-success mt-2'
     };
-    this.model = new Survey.Model(json);
+    this.model = new Survey.Model(JSON.stringify(SurveyJson));
     this.onComplete = this.onComplete.bind(this);
   }
 
