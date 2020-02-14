@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col, FormControl } from 'react-bootstrap';
 import {
   Bar,
@@ -13,36 +13,10 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import AngledTick from 'components/AngledTick/AngledTick';
 import Surveys from 'data/surveys';
 import { actions as appActions } from 'reducers/application';
 import { getSurveys, getSelectedSurvey } from 'selectors/application';
-
-class AngledTick extends PureComponent {
-  static propTypes = {
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    payload: PropTypes.object.isRequired
-  };
-
-  render() {
-    const { x, y, payload } = this.props;
-
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <text
-          x={0}
-          y={0}
-          dy={18}
-          textAnchor="end"
-          fill="#666"
-          transform="rotate(-35)"
-        >
-          {payload.value}
-        </text>
-      </g>
-    );
-  }
-}
 
 export class Results extends Component {
   static propTypes = {
@@ -57,7 +31,16 @@ export class Results extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSelectorChange = this.handleSelectorChange.bind(this);
+    this.state = {
+      selectedQuestion: '',
+      questions: []
+    };
+    this.handleSurveySelectorChange = this.handleSurveySelectorChange.bind(
+      this
+    );
+    this.handleQuestionSelectorChange = this.handleQuestionSelectorChange.bind(
+      this
+    );
   }
 
   componentDidMount() {
@@ -66,18 +49,48 @@ export class Results extends Component {
     actions.loadSurveys();
   }
 
-  handleSelectorChange(event) {
+  async handleSurveySelectorChange(event) {
     const { actions } = this.props;
     const {
       target: { value }
     } = event;
 
-    if (value) {
-      actions.loadSurvey(value);
+    if (!value) {
+      return;
     }
+
+    actions.loadSurvey(value);
+
+    const { default: jsonData } = await import(`data/${value}.json`);
+
+    if (!jsonData?.pages?.length) {
+      return;
+    }
+
+    const questions = jsonData.pages[0].elements.map(element => ({
+      id: element.name,
+      name: element.title
+    }));
+
+    this.setState({
+      questions,
+      selectedQuestion: questions.length ? questions[0].id : ''
+    });
   }
 
-  get selector() {
+  handleQuestionSelectorChange(event) {
+    const {
+      target: { value }
+    } = event;
+
+    if (!value) {
+      return;
+    }
+
+    this.setState({ selectedQuestion: value });
+  }
+
+  get surveySelector() {
     const { surveys } = this.props;
 
     const mappedSurveys = surveys.map(survey => {
@@ -101,7 +114,7 @@ export class Results extends Component {
       <FormControl
         as="select"
         defaultValue=""
-        onChange={this.handleSelectorChange}
+        onChange={this.handleSurveySelectorChange}
         className="mb-2"
       >
         <option value="">Select a survey</option>
@@ -110,7 +123,8 @@ export class Results extends Component {
     );
   }
 
-  get chart() {
+  get questionSelector() {
+    const { questions, selectedQuestion } = this.state;
     const { selectedSurvey } = this.props;
 
     if (!selectedSurvey) {
@@ -118,8 +132,32 @@ export class Results extends Component {
     }
 
     return (
+      <FormControl
+        as="select"
+        value={selectedQuestion}
+        onChange={this.handleQuestionSelectorChange}
+        className="mb-2"
+      >
+        {questions.map(question => (
+          <option value={question.id} key={question.name}>
+            {question.name}
+          </option>
+        ))}
+      </FormControl>
+    );
+  }
+
+  get chart() {
+    const { selectedQuestion } = this.state;
+    const { selectedSurvey } = this.props;
+
+    if (!selectedSurvey || !selectedQuestion) {
+      return null;
+    }
+
+    return (
       <ResponsiveContainer width="100%" height={500}>
-        <BarChart data={selectedSurvey.answers}>
+        <BarChart data={selectedSurvey.answers[selectedQuestion]}>
           <XAxis
             dataKey="flavor"
             tick={<AngledTick />}
@@ -128,7 +166,7 @@ export class Results extends Component {
           />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="2 4" />
           <Bar dataKey="count" fill="#4582ec" />
         </BarChart>
       </ResponsiveContainer>
@@ -141,7 +179,8 @@ export class Results extends Component {
         <Row>
           <Col>
             <h1>Survey Results</h1>
-            {this.selector}
+            {this.surveySelector}
+            {this.questionSelector}
             {this.chart}
           </Col>
         </Row>
