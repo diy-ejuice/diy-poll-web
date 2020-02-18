@@ -4,17 +4,17 @@
   http://jedwatson.github.io/classnames
 */
 
-/*!
- * surveyjs - Survey JavaScript library v1.5.1
- * Copyright (c) 2015-2019 Devsoft Baltic OÜ  - http://surveyjs.io/
- * License: MIT (http://www.opensource.org/licenses/mit-license.php)
- */
-
 /*
 object-assign
 (c) Sindre Sorhus
 @license MIT
 */
+
+/*!
+ * surveyjs - Survey JavaScript library v1.5.1
+ * Copyright (c) 2015-2019 Devsoft Baltic OÜ  - http://surveyjs.io/
+ * License: MIT (http://www.opensource.org/licenses/mit-license.php)
+ */
 
 /*! decimal.js-light v2.5.0 https://github.com/MikeMcl/decimal.js-light/LICENCE */
 
