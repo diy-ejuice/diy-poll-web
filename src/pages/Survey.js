@@ -6,15 +6,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Survey from 'survey-react';
 
-import SurveyJson from 'data/fotw-2020-03-24';
-
+import Surveys from 'data/surveys';
+import SurveySelector from 'components/SurveySelector/SurveySelector';
 import { actions as appActions } from 'reducers/application';
+import { getSelectedSurvey, getSurveys } from 'selectors/application';
 
 export class SurveyPage extends Component {
   static propTypes = {
     actions: PropTypes.shape({
-      submitSurvey: PropTypes.func.isRequired
-    }).isRequired
+      submitSurvey: PropTypes.func.isRequired,
+      loadSurvey: PropTypes.func.isRequired,
+      loadSurveys: PropTypes.func.isRequired
+    }).isRequired,
+    selectedSurvey: PropTypes.object,
+    surveys: PropTypes.arrayOf(PropTypes.object)
   };
 
   constructor(props) {
@@ -32,8 +37,20 @@ export class SurveyPage extends Component {
       },
       navigationButton: 'btn btn-success mt-2'
     };
-    this.model = new Survey.Model(JSON.stringify(SurveyJson));
+    this.surveys = [];
     this.onComplete = this.onComplete.bind(this);
+  }
+
+  async componentDidMount() {
+    const { actions } = this.props;
+
+    this.surveys = await Promise.all(
+      Surveys.filter(survey => !survey.visible).map(
+        async survey => new Survey.Model(await import(`data/${survey.id}.json`))
+      )
+    );
+
+    actions.loadSurveys();
   }
 
   onComplete(model) {
@@ -47,6 +64,30 @@ export class SurveyPage extends Component {
     actions.submitSurvey(cookieName, valuesHash);
   }
 
+  get survey() {
+    const { selectedSurvey } = this.props;
+
+    if (!selectedSurvey) {
+      return null;
+    }
+
+    const surveyModel = this.surveys.find(
+      survey => survey.cookieName === selectedSurvey?.id
+    );
+
+    if (!surveyModel) {
+      return null;
+    }
+
+    return (
+      <Survey.Survey
+        css={this.css}
+        model={surveyModel}
+        onComplete={this.onComplete}
+      />
+    );
+  }
+
   render() {
     return (
       <Container>
@@ -54,11 +95,8 @@ export class SurveyPage extends Component {
         <Row>
           <Col>
             <h1>Active Polls</h1>
-            <Survey.Survey
-              css={this.css}
-              model={this.model}
-              onComplete={this.onComplete}
-            />
+            <SurveySelector showVisible={false} />
+            {this.survey}
           </Col>
         </Row>
       </Container>
@@ -66,8 +104,13 @@ export class SurveyPage extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  surveys: getSurveys(state),
+  selectedSurvey: getSelectedSurvey(state)
+});
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(appActions, dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(SurveyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyPage);
