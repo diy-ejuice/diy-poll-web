@@ -132,6 +132,11 @@
   {
     "id": "fotw-2020-08-04",
     "name": "Breakfast Breads",
+    "visible": true
+  },
+  {
+    "id": "fotw-2020-08-11",
+    "name": "Flavor of the Quarter 2",
     "visible": false
   }
 ]
